@@ -1,11 +1,16 @@
 "use client";
 import { useEffect, useState } from "react";
 import axios, { CanceledError } from "axios";
+
+// components
+import Question from "../Components/Question/index";
+
 import styles from "@/styles/Home.module.css";
 import { QuizQuestion } from "@/types";
 
 export default function Home() {
   const [res, setRes] = useState<QuizQuestion[]>([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -13,8 +18,7 @@ export default function Home() {
       .get("https://opentdb.com/api.php?amount=10&category=9")
       .then((resp) => {
         setRes(resp.data.results);
-        console.log(resp);
-        console.log(resp.data);
+        setLoading(false);
       })
       .catch((err) => {
         if (err instanceof CanceledError) return;
@@ -25,12 +29,7 @@ export default function Home() {
   return (
     <>
       <main className={styles.main}>
-        <h1>think!</h1>
-        <p>
-          {res.map((q, i) => {
-            return <span key={i}>{q.question}</span>;
-          })}
-        </p>
+        {!loading && <Question question={res[0].question} />}
       </main>
     </>
   );
