@@ -16,7 +16,7 @@ const index = ({ question }: QuestionProps) => {
   );
   return (
     <>
-      <h1>{ammendedQ}</h1>
+      <p>{ammendedQ}</p>
     </>
   );
 };

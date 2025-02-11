@@ -29,7 +29,11 @@ export default function Home() {
   return (
     <>
       <main className={styles.main}>
-        {!loading && <Question question={res[0].question} />}
+        {!loading && (
+          <div className={styles.questionLayout}>
+            <Question question={res[0].question} />
+          </div>
+        )}
       </main>
     </>
   );

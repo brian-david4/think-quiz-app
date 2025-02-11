@@ -25,3 +25,8 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+@font-face {
+  font-family: "Boska Italic";
+  src: url(../../fonts/PPEditorialOld-Italic.otf);
+}
