@@ -12,9 +12,18 @@
   left: 2%;
   top: 5vw;
   width: 75vw;
-  background-color: coral;
+  /* background-color: coral; */
   display: grid;
   place-items: center;
   font-size: 4vw;
   font-family: "Boska Italic";
+}
+.answerLayout {
+  position: absolute;
+  right: 10%;
+  bottom: 5%;
+  width: 40vw;
+  height: 30vh;
+  display: grid;
+  place-items: center;
 }
