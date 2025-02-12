@@ -1,3 +1,4 @@
+import { formatEntity } from "@/utils/formatEntity";
 import React from "react";
 
 interface QuestionProps {
@@ -5,15 +6,7 @@ interface QuestionProps {
 }
 
 const index = ({ question }: QuestionProps) => {
-  const entities = {
-    "&#039;": "'",
-    "&quot;": '"',
-  };
-
-  const ammendedQ: string = question.replaceAll(
-    /&#?\w+?;/g,
-    (match) => entities[match as keyof typeof entities]
-  );
+  const ammendedQ = formatEntity(question);
   return (
     <>
       <p>{ammendedQ}</p>
