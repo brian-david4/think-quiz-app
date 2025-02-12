@@ -23,6 +23,15 @@ export default function Home() {
     }
   };
 
+  const handleAnswerClick = (ans: string) => {
+    if (ans === res[activeIdx].correct_answer) {
+      console.log("correct!");
+    } else {
+      console.log("incorrect :(");
+    }
+    setActiveIdx(activeIdx + 1);
+  };
+
   useEffect(() => {
     axios
       .get("https://opentdb.com/api.php?amount=10&category=9")
@@ -49,6 +58,7 @@ export default function Home() {
               <Answers
                 correctAnswer={res[activeIdx].correct_answer}
                 incorrectAnswers={res[activeIdx].incorrect_answers}
+                handleClick={handleAnswerClick}
               />
             </div>
           </>

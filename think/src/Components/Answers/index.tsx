@@ -5,9 +5,14 @@ import { randomiseArray } from "@/utils/randomiseArray";
 interface AnswersProps {
   correctAnswer: string;
   incorrectAnswers: string[];
+  handleClick: (s: string) => void;
 }
 
-const index = ({ correctAnswer, incorrectAnswers }: AnswersProps) => {
+const index = ({
+  correctAnswer,
+  incorrectAnswers,
+  handleClick,
+}: AnswersProps) => {
   const answers: string[] = randomiseArray([
     ...incorrectAnswers,
     correctAnswer,
@@ -17,7 +22,11 @@ const index = ({ correctAnswer, incorrectAnswers }: AnswersProps) => {
       {
         <div className={styles.answerContainer}>
           {answers.map((ans, key) => {
-            return <div key={key}>{formatEntity(ans)}</div>;
+            return (
+              <span onClick={() => handleClick(ans)} key={`ans_${key}`}>
+                {formatEntity(ans)}
+              </span>
+            );
           })}
         </div>
       }
