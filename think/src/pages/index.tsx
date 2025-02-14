@@ -10,6 +10,7 @@ import { QuizQuestion } from "@/types";
 import Answers from "../Components/Answers";
 import { motion } from "motion/react";
 import { clipBorder, layoutAnims } from "@/styles/HomeAnims";
+import Score from "@/Components/Score";
 
 export default function Home() {
   const [res, setRes] = useState<QuizQuestion[]>([]);
@@ -77,7 +78,7 @@ export default function Home() {
               />
             </motion.div>
 
-            <div style={{ position: "absolute" }}>{score}</div>
+            <Score score={score} />
           </>
         )}
       </motion.main>
