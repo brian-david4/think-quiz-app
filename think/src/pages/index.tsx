@@ -11,12 +11,14 @@ import Answers from "../Components/Answers";
 import { motion } from "motion/react";
 import { clipBorder, layoutAnims } from "@/styles/HomeAnims";
 import Score from "@/Components/Score";
+import { useDebounce } from "@uidotdev/usehooks";
 
 export default function Home() {
   const [res, setRes] = useState<QuizQuestion[]>([]);
   const [activeIdx, setActiveIdx] = useState(0);
   const [loading, setLoading] = useState(true);
   const [score, setScore] = useState(0);
+  const debouncedScore = useDebounce(score, 2000);
 
   const handleAnswerClick = (ans: string) => {
     if (ans === res[activeIdx].correct_answer) {
@@ -78,7 +80,7 @@ export default function Home() {
               />
             </motion.div>
 
-            <Score score={score} />
+            <Score score={debouncedScore} />
           </>
         )}
       </motion.main>
