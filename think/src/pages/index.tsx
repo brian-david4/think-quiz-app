@@ -8,28 +8,28 @@ import Question from "../Components/Question/index";
 import styles from "@/styles/Home.module.css";
 import { QuizQuestion } from "@/types";
 import Answers from "../Components/Answers";
+import { motion } from "motion/react";
+import { clipBorder, layoutAnims } from "@/styles/HomeAnims";
 
 export default function Home() {
   const [res, setRes] = useState<QuizQuestion[]>([]);
   const [activeIdx, setActiveIdx] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-
-  const handleClick = () => {
-    if (activeIdx <= 9) {
-      setActiveIdx(activeIdx + 1);
-    } else {
-      setActiveIdx(0);
-    }
-  };
+  const [score, setScore] = useState(0);
 
   const handleAnswerClick = (ans: string) => {
     if (ans === res[activeIdx].correct_answer) {
       console.log("correct!");
+      setScore(score + 1);
     } else {
       console.log("incorrect :(");
     }
-    setActiveIdx(activeIdx + 1);
+
+    if (activeIdx < res.length - 1) {
+      setActiveIdx(activeIdx + 1);
+    } else {
+      setActiveIdx(0);
+    }
   };
 
   useEffect(() => {
@@ -41,30 +41,43 @@ export default function Home() {
       })
       .catch((err) => {
         if (err instanceof CanceledError) return;
-        setError(err.message);
       });
   }, []);
 
   return (
     <>
-      <main className={styles.main}>
+      <motion.main
+        key={activeIdx}
+        variants={clipBorder}
+        initial="initial"
+        animate="enter"
+        className={styles.main}
+      >
         {!loading && (
           <>
-            <div className={styles.questionLayout}>
+            <motion.div
+              variants={layoutAnims}
+              initial="initial"
+              animate="enter"
+              className={styles.questionLayout}
+            >
               <Question question={res[activeIdx].question} />
-            </div>
+            </motion.div>
 
-            <div className={styles.answerLayout}>
+            <motion.div
+              variants={layoutAnims}
+              initial="initial"
+              animate="enter"
+              className={styles.answerLayout}
+            >
               <Answers
                 correctAnswer={res[activeIdx].correct_answer}
                 incorrectAnswers={res[activeIdx].incorrect_answers}
                 handleClick={handleAnswerClick}
               />
-            </div>
           </>
         )}
-        <button onClick={handleClick}>next question</button>
-      </main>
+      </motion.main>
     </>
   );
 }

@@ -4,5 +4,12 @@
   display: grid;
   place-items: center;
   grid-template-columns: repeat(2, 1fr);
-  /* background-color: aqua; */
+  /* font-family: "Mori Regular" ; */
+}
+.answer {
+  height: 95%;
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

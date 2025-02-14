@@ -23,7 +23,11 @@ const index = ({
         <div className={styles.answerContainer}>
           {answers.map((ans, key) => {
             return (
-              <span onClick={() => handleClick(ans)} key={`ans_${key}`}>
+              <span
+                className={styles.answer}
+                onClick={() => handleClick(ans)}
+                key={`ans_${key}`}
+              >
                 {formatEntity(ans)}
               </span>
             );

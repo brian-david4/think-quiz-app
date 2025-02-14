@@ -6,24 +6,32 @@
   flex-direction: column;
   height: 100vh;
   width: 100vw;
+
+  background-color: var(--background);
+  color: var(--foreground);
+  padding: 5%;
 }
 .questionLayout {
   position: absolute;
-  left: 2%;
+  left: 5%;
   top: 5vw;
   width: 75vw;
-  /* background-color: coral; */
   display: grid;
   place-items: center;
   font-size: 4vw;
-  font-family: "Boska Italic";
+  font-family: "Editorial Old";
 }
 .answerLayout {
   position: absolute;
   right: 10%;
-  bottom: 5%;
-  width: 40vw;
+  bottom: 15%;
+  width: 45vw;
   height: 30vh;
   display: grid;
   place-items: center;
+  font-family: "Mori Regular";
+  font-size: 1.5vw;
+  font-weight: bold;
+  letter-spacing: 0.1ch;
+  text-transform: lowercase;
 }
