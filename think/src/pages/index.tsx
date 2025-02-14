@@ -75,6 +75,9 @@ export default function Home() {
                 incorrectAnswers={res[activeIdx].incorrect_answers}
                 handleClick={handleAnswerClick}
               />
+            </motion.div>
+
+            <div style={{ position: "absolute" }}>{score}</div>
           </>
         )}
       </motion.main>
