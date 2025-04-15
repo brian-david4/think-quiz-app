@@ -1,24 +1,25 @@
 "use client";
 import { useEffect, useState } from "react";
 import axios, { CanceledError } from "axios";
-
-// components
-import Question from "../Components/Question/index";
-
-import styles from "@/styles/Home.module.css";
-import { QuizQuestion } from "@/types";
-import Answers from "../Components/Answers";
 import { motion } from "motion/react";
-import { clipBorder, layoutAnims } from "@/styles/HomeAnims";
-import Score from "@/Components/Score";
 import { useDebounce } from "@uidotdev/usehooks";
+
+import { QuizQuestion } from "@/types";
+// components
+import QuestionsAndAnswers from "@/Components/QuestionsAndAnswers";
+
+// styles
+import styles from "@/styles/Home.module.css";
+import { clipBorder } from "@/styles/HomeAnims";
 
 export default function Home() {
   const [res, setRes] = useState<QuizQuestion[]>([]);
+
   const [activeIdx, setActiveIdx] = useState(0);
-  const [loading, setLoading] = useState(true);
-  const [score, setScore] = useState(0);
   const [finishQuiz, setFinishQuiz] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  const [score, setScore] = useState(0);
   const debouncedScore = useDebounce(score, 2000);
 
   const handleAnswerClick = (ans: string) => {
@@ -59,29 +60,12 @@ export default function Home() {
       >
         {!loading && !finishQuiz && (
           <>
-            <motion.div
-              variants={layoutAnims}
-              initial="initial"
-              animate="enter"
-              className={styles.questionLayout}
-            >
-              <Question question={res[activeIdx].question} />
-            </motion.div>
-
-            <motion.div
-              variants={layoutAnims}
-              initial="initial"
-              animate="enter"
-              className={styles.answerLayout}
-            >
-              <Answers
-                correctAnswer={res[activeIdx].correct_answer}
-                incorrectAnswers={res[activeIdx].incorrect_answers}
-                handleClick={handleAnswerClick}
-              />
-            </motion.div>
-
-            <Score score={debouncedScore} />
+            <QuestionsAndAnswers
+              res={res}
+              debouncedScore={debouncedScore}
+              activeIdx={activeIdx}
+              handleAnswerClick={(ans: string) => handleAnswerClick(ans)}
+            />
           </>
         )}
         {finishQuiz && <div>quiz results: {score} / 10</div>}

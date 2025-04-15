@@ -1,0 +1,24 @@
+.questionLayout {
+  position: absolute;
+  left: 5%;
+  top: 5vw;
+  width: 75vw;
+  display: grid;
+  place-items: center;
+  font-size: 4vw;
+  font-family: "Editorial Old";
+}
+.answerLayout {
+  position: absolute;
+  right: 10%;
+  bottom: 15%;
+  width: 45vw;
+  height: 30vh;
+  display: grid;
+  place-items: center;
+  font-family: "Mori Regular";
+  font-size: 1.5vw;
+  font-weight: bold;
+  letter-spacing: 0.1ch;
+  text-transform: lowercase;
+}
