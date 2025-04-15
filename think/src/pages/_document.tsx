@@ -14,7 +14,7 @@ export default function Document() {
           <filter id="goo">
             <feGaussianBlur
               in="SourceGraphic"
-              stdDeviation={10}
+              stdDeviation={20}
               result="blur"
             />
             <feColorMatrix

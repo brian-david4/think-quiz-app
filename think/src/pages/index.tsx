@@ -18,6 +18,7 @@ export default function Home() {
   const [activeIdx, setActiveIdx] = useState(0);
   const [loading, setLoading] = useState(true);
   const [score, setScore] = useState(0);
+  const [finishQuiz, setFinishQuiz] = useState(false);
   const debouncedScore = useDebounce(score, 2000);
 
   const handleAnswerClick = (ans: string) => {
@@ -28,10 +29,10 @@ export default function Home() {
       console.log("incorrect :(");
     }
 
-    if (activeIdx < res.length - 1) {
-      setActiveIdx(activeIdx + 1);
+    if (activeIdx === 9) {
+      setFinishQuiz(true);
     } else {
-      setActiveIdx(0);
+      setActiveIdx(activeIdx + 1);
     }
   };
 
@@ -56,7 +57,7 @@ export default function Home() {
         animate="enter"
         className={styles.main}
       >
-        {!loading && (
+        {!loading && !finishQuiz && (
           <>
             <motion.div
               variants={layoutAnims}
@@ -83,6 +84,7 @@ export default function Home() {
             <Score score={debouncedScore} />
           </>
         )}
+        {finishQuiz && <div>quiz results: {score} / 10</div>}
       </motion.main>
     </>
   );
