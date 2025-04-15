@@ -10,7 +10,6 @@ import QuestionsAndAnswers from "@/Components/QuestionsAndAnswers";
 
 // styles
 import styles from "@/styles/Home.module.css";
-import { clipBorder } from "@/styles/HomeAnims";
 
 export default function Home() {
   const [res, setRes] = useState<QuizQuestion[]>([]);
@@ -51,25 +50,21 @@ export default function Home() {
 
   return (
     <>
-      <motion.main
-        key={activeIdx}
-        variants={clipBorder}
-        initial="initial"
-        animate="enter"
-        className={styles.main}
-      >
+      <main className={styles.main}>
         {!loading && !finishQuiz && (
-          <>
-            <QuestionsAndAnswers
-              res={res}
-              debouncedScore={debouncedScore}
-              activeIdx={activeIdx}
-              handleAnswerClick={(ans: string) => handleAnswerClick(ans)}
-            />
-          </>
+          <QuestionsAndAnswers
+            res={res}
+            debouncedScore={debouncedScore}
+            activeIdx={activeIdx}
+            handleAnswerClick={(ans: string) => handleAnswerClick(ans)}
+          />
         )}
-        {finishQuiz && <div>quiz results: {score} / 10</div>}
-      </motion.main>
+        {finishQuiz && (
+          <div style={{ zIndex: 10, position: "fixed" }}>
+            quiz results: {score} / 10
+          </div>
+        )}
+      </main>
     </>
   );
 }

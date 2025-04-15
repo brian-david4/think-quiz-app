@@ -2,6 +2,7 @@ const entities = {
   "&#039;": "'",
   "&quot;": '"',
   "&hellip": "...",
+  "&#38;": "&",
 };
 
 export const formatEntity = (s: string) => {

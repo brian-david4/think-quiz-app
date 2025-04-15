@@ -1,3 +1,17 @@
+.filter {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  filter: url(#goo);
+}
+.QnAwrapper {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  padding: 5%;
+  background-color: var(--bg-1);
+  color: rgb(53, 52, 50);
+}
 .questionLayout {
   position: absolute;
   left: 5%;

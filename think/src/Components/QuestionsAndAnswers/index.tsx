@@ -1,12 +1,14 @@
 import { motion } from "motion/react";
 
+import { QuizQuestion } from "@/types";
+
 // styles
-import { layoutAnims } from "./Q&Aanims";
+import { clipBorder, layoutAnims } from "./Q&Aanims";
 import styles from "./QandA.module.css";
+//components
 import Question from "./Question";
 import Answers from "./Answers";
 import Score from "./Score";
-import { QuizQuestion } from "@/types";
 
 interface QuestionsAndAnswersProps {
   res: QuizQuestion[];
@@ -23,29 +25,37 @@ const index = ({
 }: QuestionsAndAnswersProps) => {
   return (
     <>
-      <motion.div
-        variants={layoutAnims}
-        initial="initial"
-        animate="enter"
-        className={styles.questionLayout}
-      >
-        <Question question={res[activeIdx].question} />
-      </motion.div>
-
-      <motion.div
-        variants={layoutAnims}
-        initial="initial"
-        animate="enter"
-        className={styles.answerLayout}
-      >
-        <Answers
-          correctAnswer={res[activeIdx].correct_answer}
-          incorrectAnswers={res[activeIdx].incorrect_answers}
-          handleClick={handleAnswerClick}
-        />
-      </motion.div>
-
-      <Score score={debouncedScore} />
+      <div className={styles.filter}>
+        <motion.div
+          key={activeIdx}
+          variants={clipBorder}
+          initial="initial"
+          animate="enter"
+          className={styles.QnAwrapper}
+        >
+          <motion.div
+            variants={layoutAnims}
+            initial="initial"
+            animate="enter"
+            className={styles.questionLayout}
+          >
+            <Question question={res[activeIdx].question} />
+          </motion.div>
+          <motion.div
+            variants={layoutAnims}
+            initial="initial"
+            animate="enter"
+            className={styles.answerLayout}
+          >
+            <Answers
+              correctAnswer={res[activeIdx].correct_answer}
+              incorrectAnswers={res[activeIdx].incorrect_answers}
+              handleClick={handleAnswerClick}
+            />
+          </motion.div>
+          <Score score={debouncedScore} />
+        </motion.div>
+      </div>
     </>
   );
 };

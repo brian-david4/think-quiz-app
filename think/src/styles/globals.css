@@ -1,6 +1,6 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-1: #fffcf2;
+  --bg-2: #ed6a5e;
 }
 
 html,
@@ -15,12 +15,10 @@ body {
 }
 
 body {
-  color: var(--background);
-  background: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
 #__next {
-  filter: url(#goo);
+  background-color: var(--bg-2);
 }
 * {
   box-sizing: border-box;
