@@ -1,6 +1,6 @@
-import { formatEntity } from "@/utils/formatEntity";
 import styles from "./Answers.module.css";
 import { randomiseArray } from "@/utils/randomiseArray";
+import { decode } from "html-entities";
 
 interface AnswersProps {
   correctAnswer: string;
@@ -28,7 +28,7 @@ const index = ({
                 onClick={() => handleClick(ans)}
                 key={`ans_${key}`}
               >
-                {formatEntity(ans)}
+                {decode(ans)}
               </span>
             );
           })}

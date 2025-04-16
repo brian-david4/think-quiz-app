@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import axios, { CanceledError } from "axios";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { useDebounce } from "@uidotdev/usehooks";
 
 import { QuizQuestion } from "@/types";
@@ -51,14 +51,16 @@ export default function Home() {
   return (
     <>
       <main className={styles.main}>
-        {!loading && !finishQuiz && (
-          <QuestionsAndAnswers
-            res={res}
-            debouncedScore={debouncedScore}
-            activeIdx={activeIdx}
-            handleAnswerClick={(ans: string) => handleAnswerClick(ans)}
-          />
-        )}
+        <AnimatePresence>
+          {!loading && !finishQuiz && (
+            <QuestionsAndAnswers
+              res={res}
+              debouncedScore={debouncedScore}
+              activeIdx={activeIdx}
+              handleAnswerClick={(ans: string) => handleAnswerClick(ans)}
+            />
+          )}
+        </AnimatePresence>
         {finishQuiz && (
           <div style={{ zIndex: 10, position: "fixed" }}>
             quiz results: {score} / 10

@@ -1,4 +1,4 @@
-import { formatEntity } from "@/utils/formatEntity";
+import { decode } from "html-entities";
 import React from "react";
 
 interface QuestionProps {
@@ -6,7 +6,7 @@ interface QuestionProps {
 }
 
 const index = ({ question }: QuestionProps) => {
-  const ammendedQ = formatEntity(question);
+  const ammendedQ = decode(question);
   return (
     <>
       <p>{ammendedQ}</p>

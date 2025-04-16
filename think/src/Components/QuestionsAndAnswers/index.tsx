@@ -1,9 +1,9 @@
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 
 import { QuizQuestion } from "@/types";
 
 // styles
-import { clipBorder, layoutAnims } from "./Q&Aanims";
+import { clipBorder, exit, layoutAnims } from "./Q&Aanims";
 import styles from "./QandA.module.css";
 //components
 import Question from "./Question";
@@ -25,37 +25,45 @@ const index = ({
 }: QuestionsAndAnswersProps) => {
   return (
     <>
-      <div className={styles.filter}>
-        <motion.div
-          key={activeIdx}
-          variants={clipBorder}
-          initial="initial"
-          animate="enter"
-          className={styles.QnAwrapper}
-        >
+      <motion.div
+        variants={exit}
+        initial="initial"
+        exit="exit"
+        className={styles.filter}
+      >
+        <AnimatePresence mode="wait">
           <motion.div
-            variants={layoutAnims}
+            key={activeIdx}
+            variants={clipBorder}
             initial="initial"
             animate="enter"
-            className={styles.questionLayout}
+            exit="exit"
+            className={styles.QnAwrapper}
           >
-            <Question question={res[activeIdx].question} />
+            <motion.div
+              variants={layoutAnims}
+              initial="initial"
+              animate="enter"
+              className={styles.questionLayout}
+            >
+              <Question question={res[activeIdx].question} />
+            </motion.div>
+            <motion.div
+              variants={layoutAnims}
+              initial="initial"
+              animate="enter"
+              className={styles.answerLayout}
+            >
+              <Answers
+                correctAnswer={res[activeIdx].correct_answer}
+                incorrectAnswers={res[activeIdx].incorrect_answers}
+                handleClick={handleAnswerClick}
+              />
+            </motion.div>
+            <Score score={debouncedScore} />
           </motion.div>
-          <motion.div
-            variants={layoutAnims}
-            initial="initial"
-            animate="enter"
-            className={styles.answerLayout}
-          >
-            <Answers
-              correctAnswer={res[activeIdx].correct_answer}
-              incorrectAnswers={res[activeIdx].incorrect_answers}
-              handleClick={handleAnswerClick}
-            />
-          </motion.div>
-          <Score score={debouncedScore} />
-        </motion.div>
-      </div>
+        </AnimatePresence>
+      </motion.div>
     </>
   );
 };
