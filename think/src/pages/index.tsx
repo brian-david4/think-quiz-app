@@ -10,6 +10,7 @@ import QuestionsAndAnswers from "@/Components/QuestionsAndAnswers";
 
 // styles
 import styles from "@/styles/Home.module.css";
+import QuizResults from "@/Components/QuizResults";
 
 export default function Home() {
   const [res, setRes] = useState<QuizQuestion[]>([]);
@@ -61,11 +62,7 @@ export default function Home() {
             />
           )}
         </AnimatePresence>
-        {finishQuiz && (
-          <div style={{ zIndex: 10, position: "fixed" }}>
-            quiz results: {score} / 10
-          </div>
-        )}
+        {finishQuiz && <QuizResults score={score} />}
       </main>
     </>
   );

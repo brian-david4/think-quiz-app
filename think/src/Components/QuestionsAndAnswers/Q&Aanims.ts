@@ -28,6 +28,6 @@ export const exit = {
   },
   exit: {
     y: "100%",
-    transition: { duration: 2.5, ease: [0.76, 0, 0.24, 1], delay: 0.5 },
+    transition: { duration: 1.5, ease: [0.76, 0, 0.24, 1], delay: 0.5 },
   },
 };
