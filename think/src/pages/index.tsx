@@ -24,10 +24,7 @@ export default function Home() {
 
   const handleAnswerClick = (ans: string) => {
     if (ans === res[activeIdx].correct_answer) {
-      console.log("correct!");
       setScore(score + 1);
-    } else {
-      console.log("incorrect :(");
     }
 
     if (activeIdx === 9) {

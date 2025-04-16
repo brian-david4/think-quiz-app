@@ -7,10 +7,38 @@
   align-items: center;
 }
 .container {
+  position: relative;
   height: 100%;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: var(--bg-1);
+  user-select: none;
+}
+.message {
+  position: absolute;
+  font-family: "Editorial Old";
+  font-size: 6.5vw;
+  right: 2%;
+  bottom: 5%;
+  width: 50vw;
+  display: flex;
+  flex-wrap: wrap;
+}
+.result {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 20vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 5%;
+}
+.resultInner {
+  height: 100%;
+  display: flow-root;
+  font-size: 10vw;
+  font-family: "Mori Regular";
 }

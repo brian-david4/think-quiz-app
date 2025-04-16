@@ -23,6 +23,7 @@
   place-items: center;
   font-size: 4vw;
   font-family: "Editorial Old";
+  letter-spacing: 0.075ch;
 }
 .answerLayout {
   position: absolute;
