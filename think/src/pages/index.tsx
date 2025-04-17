@@ -12,6 +12,7 @@ import QuestionsAndAnswers from "@/Components/QuestionsAndAnswers";
 import styles from "@/styles/Home.module.css";
 import QuizResults from "@/Components/QuizResults";
 import { api } from "@/api/api";
+import WelcomeScreen from "@/Components/WelcomeScreen";
 
 export default function Home() {
   const [res, setRes] = useState<QuizQuestion[]>([]);
@@ -40,7 +41,6 @@ export default function Home() {
       .get("?amount=10&category=9")
       .then((resp) => {
         setRes(resp.data.results);
-        setLoading(false);
       })
       .catch((err) => {
         if (err instanceof CanceledError) return;
@@ -50,6 +50,10 @@ export default function Home() {
   return (
     <>
       <main className={styles.main}>
+        <AnimatePresence mode="wait">
+          {loading && <WelcomeScreen onClick={() => setLoading(false)} />}
+        </AnimatePresence>
+
         <AnimatePresence>
           {!loading && !finishQuiz && (
             <QuestionsAndAnswers
@@ -60,6 +64,7 @@ export default function Home() {
             />
           )}
         </AnimatePresence>
+
         {finishQuiz && <QuizResults score={score} />}
       </main>
     </>

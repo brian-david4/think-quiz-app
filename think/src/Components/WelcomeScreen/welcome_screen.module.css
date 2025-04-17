@@ -1,0 +1,24 @@
+.container {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  color: black;
+  background-color: var(--bg-2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  perspective: none;
+}
+.title {
+  font-size: 25vw;
+  font-family: "Editorial Old";
+}
+.message {
+  font-size: 1.5rem;
+}
+.svgWrapper {
+  height: 7.5vh;
+  position: relative;
+  aspect-ratio: 1/1;
+}
