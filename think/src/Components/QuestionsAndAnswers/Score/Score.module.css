@@ -13,3 +13,14 @@
   background-color: var(--foreground);
   color: var(--background);
 }
+@media (max-width: 1024px) {
+  .score {
+    font-size: 6vw;
+    left: 10%;
+  }
+}
+@media (max-width: 769px) {
+  .score {
+    font-size: 7.5vw;
+  }
+}

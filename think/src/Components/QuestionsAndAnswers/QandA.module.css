@@ -17,11 +17,11 @@
 .questionLayout {
   position: absolute;
   left: 5%;
-  top: 5vw;
+  top: 5vh;
   width: 75vw;
   display: grid;
   place-items: center;
-  font-size: 4vw;
+  font-size: 5vw;
   font-family: "Editorial Old";
   letter-spacing: 0.075ch;
 }
@@ -38,4 +38,26 @@
   font-weight: bold;
   letter-spacing: 0.1ch;
   text-transform: lowercase;
+  /* background-color: aqua; */
+}
+@media (max-width: 1024px) {
+  .questionLayout {
+    left: 10%;
+    font-size: 7vw;
+  }
+  .answerLayout {
+    font-size: 2.5vw;
+    width: 60vw;
+    height: 35vh;
+    right: 5%;
+    bottom: 10.5%;
+  }
+}
+@media (max-width: 768px) {
+  .questionLayout {
+    font-size: 8.5vw;
+  }
+  .answerLayout {
+    font-size: 3vw;
+  }
 }
