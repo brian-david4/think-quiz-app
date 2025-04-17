@@ -11,6 +11,7 @@ import QuestionsAndAnswers from "@/Components/QuestionsAndAnswers";
 // styles
 import styles from "@/styles/Home.module.css";
 import QuizResults from "@/Components/QuizResults";
+import { api } from "@/api/api";
 
 export default function Home() {
   const [res, setRes] = useState<QuizQuestion[]>([]);
@@ -35,8 +36,8 @@ export default function Home() {
   };
 
   useEffect(() => {
-    axios
-      .get("https://opentdb.com/api.php?amount=10&category=9")
+    api
+      .get("?amount=10&category=9")
       .then((resp) => {
         setRes(resp.data.results);
         setLoading(false);
