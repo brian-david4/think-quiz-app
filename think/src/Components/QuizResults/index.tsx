@@ -1,7 +1,8 @@
-import { motion } from "motion/react";
+import { motion, useInView } from "motion/react";
 import styles from "./quiz-results.module.css";
-import { results } from "./quizResultsAnims";
+import { results, wordEnter } from "./quizResultsAnims";
 import { ResultMessages } from "@/types";
+import { useRef } from "react";
 
 interface QuizResultsProps {
   score: number;
@@ -62,6 +63,9 @@ const index = ({ score }: QuizResultsProps) => {
     },
   ];
 
+  const messageRef = useRef(null);
+  const isInView = useInView(messageRef);
+
   return (
     <>
       <div className={styles.filter}>
@@ -71,9 +75,35 @@ const index = ({ score }: QuizResultsProps) => {
           animate="enter"
           className={styles.container}
         >
-          <div className={styles.message}>{scoreMessages[score].message}</div>
+          <div className={styles.message} ref={messageRef}>
+            {scoreMessages[score].message.split(" ").map((ltr, idx) => (
+              <div key={`ltr_${idx}`} className={styles.letterWrapper}>
+                <motion.div
+                  variants={wordEnter}
+                  initial="initial"
+                  animate={isInView ? "enter" : ""}
+                  className={styles.letterInner}
+                  custom={idx}
+                >
+                  {ltr}
+                </motion.div>
+              </div>
+            ))}
+          </div>
+
           <div className={styles.result}>
-            <div className={styles.resultInner}>{score}</div>
+            <motion.div
+              initial={{ right: "100%" }}
+              animate={{ right: "0%" }}
+              transition={{
+                duration: 1,
+                ease: [0.44, 0.819, 0.356, 0.948],
+                delay: 1.5,
+              }}
+              className={styles.resultInner}
+            >
+              {score}
+            </motion.div>
           </div>
         </motion.div>
       </div>

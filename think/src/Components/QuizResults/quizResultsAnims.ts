@@ -13,3 +13,20 @@ export const results = {
     },
   },
 };
+export const wordEnter = {
+  initial: {
+    skewX: -20,
+    rotateX: -100,
+    top: "150%",
+  },
+  enter: (idx: number) => ({
+    skewX: 0,
+    rotateX: 5,
+    top: "0%",
+    transition: {
+      duration: 0.5,
+      ease: [0.44, 0.819, 0.356, 0.948],
+      delay: 0.075 * idx,
+    },
+  }),
+};

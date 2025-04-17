@@ -25,6 +25,7 @@
   width: 50vw;
   display: flex;
   flex-wrap: wrap;
+  perspective: 10vw;
 }
 .result {
   position: absolute;
@@ -36,11 +37,23 @@
   align-items: center;
   padding: 5%;
   font-size: 10vw;
+  overflow: hidden;
 }
 .resultInner {
+  position: relative;
   height: 100%;
   display: flow-root;
   font-family: "Mori Regular";
+}
+.letterWrapper {
+  overflow: hidden;
+  position: relative;
+  padding: 2.5%;
+  line-height: 75%;
+}
+.letterInner {
+  position: relative;
+  display: inline-block;
 }
 @media (max-width: 1024px) {
   .message {
