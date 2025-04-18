@@ -1,8 +1,12 @@
 import { motion, useInView } from "motion/react";
+import { useRef } from "react";
+import Image from "next/image";
+
 import styles from "./quiz-results.module.css";
 import { results, wordEnter } from "./quizResultsAnims";
 import { ResultMessages } from "@/types";
-import { useRef } from "react";
+
+import retry from "../../../public/retry.svg";
 
 interface QuizResultsProps {
   score: number;
@@ -104,6 +108,13 @@ const index = ({ score }: QuizResultsProps) => {
             >
               {score}
             </motion.div>
+          </div>
+
+          <div
+            className={styles.retryBtn}
+            onClick={() => window.location.reload()}
+          >
+            <Image src={retry} alt="retry icon" fill />
           </div>
         </motion.div>
       </div>
