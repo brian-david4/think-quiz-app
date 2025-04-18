@@ -5,4 +5,4 @@
 
 ## _If you get a low score you are really not :(((_
 
-# Click to start and test yourself
+# Click to start at the welcome screen and test yourself
