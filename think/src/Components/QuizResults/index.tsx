@@ -3,7 +3,7 @@ import { useRef } from "react";
 import Image from "next/image";
 
 import styles from "./quiz-results.module.css";
-import { results, wordEnter } from "./quizResultsAnims";
+import { results, retryEnter, wordEnter } from "./quizResultsAnims";
 import { ResultMessages } from "@/types";
 
 import retry from "../../../public/retry.svg";
@@ -110,12 +110,19 @@ const index = ({ score }: QuizResultsProps) => {
             </motion.div>
           </div>
 
-          <div
+          <motion.div
+            variants={retryEnter}
+            initial="initial"
+            animate={isInView ? "enter" : ""}
+            whileHover={{
+              rotate: -270,
+              transition: { duration: 1.5, ease: [0.76, 0, 0.24, 1] },
+            }}
             className={styles.retryBtn}
             onClick={() => window.location.reload()}
           >
             <Image src={retry} alt="retry icon" fill />
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </>

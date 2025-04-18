@@ -30,3 +30,12 @@ export const wordEnter = {
     },
   }),
 };
+export const retryEnter = {
+  initial: {
+    rotate: 400,
+  },
+  enter: {
+    rotate: 25,
+    transition: { duration: 1.5, ease: [0.76, 0, 0.24, 1] },
+  },
+};
