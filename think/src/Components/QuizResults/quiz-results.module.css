@@ -87,7 +87,7 @@
     font-size: 144px;
   }
 }
-@media (max-height: 768px) {
+@media (max-height: 540px) {
   .message {
     font-size: 3.5vw;
   }
