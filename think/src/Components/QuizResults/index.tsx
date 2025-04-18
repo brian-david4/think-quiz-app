@@ -12,7 +12,9 @@ interface QuizResultsProps {
   score: number;
 }
 
-const index = ({ score }: QuizResultsProps) => {
+const QuizResults = ({ score }: QuizResultsProps) => {
+  const messageRef = useRef(null);
+  const isInView = useInView(messageRef);
   const scoreMessages: ResultMessages[] = [
     {
       result: 0,
@@ -66,9 +68,6 @@ const index = ({ score }: QuizResultsProps) => {
       extra_message: "stop playing now...",
     },
   ];
-
-  const messageRef = useRef(null);
-  const isInView = useInView(messageRef);
 
   return (
     <>
@@ -129,4 +128,4 @@ const index = ({ score }: QuizResultsProps) => {
   );
 };
 
-export default index;
+export default QuizResults;

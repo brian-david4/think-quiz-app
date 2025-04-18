@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
-import axios, { CanceledError } from "axios";
-import { AnimatePresence, motion } from "motion/react";
+import { CanceledError } from "axios";
+import { AnimatePresence } from "motion/react";
 import { useDebounce } from "@uidotdev/usehooks";
 
 import { QuizQuestion } from "@/types";
